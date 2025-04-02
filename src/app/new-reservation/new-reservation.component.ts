@@ -19,6 +19,7 @@ export class NewReservationComponent implements OnInit {
   games: GAME[] = [];
 
   //TODO: Implémenter une façon de réduire le stock lors de la création d'une réservation
+  //TODO: Eventuellement faire en sorte de conditionner les plateformes, les afficher que si disponible
 
 
   private telRegex: RegExp | undefined;

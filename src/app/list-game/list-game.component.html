@@ -1,46 +1,13 @@
 <div class="container mt-4">
   <h2 class="mb-4">Catalogue de Jeux Vidéo</h2>
-
-<!--  <div class="row mb-4">-->
-<!--    <div class="col-md-6">-->
-<!--      <div class="input-group">-->
-<!--        <input-->
-<!--          type="text"-->
-<!--          class="form-control"-->
-<!--          placeholder="Rechercher un jeu..."-->
-<!--          [(ngModel)]="searchTerm"-->
-<!--          (input)="filterGames()">-->
-<!--        <button class="btn btn-outline-secondary" type="button">-->
-<!--          <i class="bi bi-search"></i>-->
-<!--        </button>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="col-md-3">-->
-<!--      <select class="form-select" [(ngModel)]="platformFilter" (change)="filterGames()">-->
-<!--        <option value="">Toutes les plateformes</option>-->
-<!--        <option *ngFor="let platform of platforms" [value]="platform">{{ platform }}</option>-->
-<!--      </select>-->
-<!--    </div>-->
-<!--    <div class="col-md-3">-->
-<!--      <select class="form-select" [(ngModel)]="genreFilter" (change)="filterGames()">-->
-<!--        <option value="">Tous les genres</option>-->
-<!--        <option *ngFor="let genre of genres" [value]="genre">{{ genre }}</option>-->
-<!--      </select>-->
-<!--    </div>-->
-<!--  </div>-->
-
-<!--  <div *ngIf="loading" class="text-center my-5">-->
-<!--    <div class="spinner-border" role="status">-->
-<!--      <span class="visually-hidden">Chargement...</span>-->
-<!--    </div>-->
-<!--  </div>-->
-
-<!--  <div *ngIf="!loading && filteredGames.length === 0" class="alert alert-info text-center">-->
-<!--    Aucun jeu trouvé.-->
-<!--  </div>-->
+  <div class="mt-4 mb-4">
+    <input matInput type="text" placeholder="Nom du jeu" #filtre>
+    <button mat-flat-button class="primary ms-3 me-3" type="button" (click)="filtrerJeux(filtre.value)"><mat-icon>search</mat-icon> Rechercher</button>
+    <button mat-flat-button class="primary" type="button" (click)="clearFiltres()"><mat-icon>close</mat-icon> Annuler la recherche</button>
+  </div>
 
   <div class="list-game row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-    <ng-container *ngFor="let game of listgame">
+    <ng-container *ngFor="let game of listeGameFiltree">
       <div class="col" *ngIf="game.stock > 0">
         <app-game [game]="game"></app-game>
       </div>
