@@ -9,7 +9,7 @@ import { ListGameComponent } from './list-game/list-game.component';
 import { ListReservationComponent } from './list-reservation/list-reservation.component';
 import { ReservationComponent } from './reservation/reservation.component';
 import { NewReservationComponent } from './new-reservation/new-reservation.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 // Angular Material
 import { MatCardModule } from '@angular/material/card';
@@ -51,7 +51,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSelectModule
+    MatSelectModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

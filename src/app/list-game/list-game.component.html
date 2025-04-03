@@ -1,16 +1,50 @@
 <div class="container mt-4">
+
   <h2 class="mb-4">Catalogue de Jeux Vidéo</h2>
-  <div class="mt-4 mb-4">
-    <input matInput type="text" placeholder="Nom du jeu" #filtre>
-    <button mat-flat-button class="primary ms-3 me-3" type="button" (click)="filtrerJeux(filtre.value)"><mat-icon>search</mat-icon> Rechercher</button>
-    <button mat-flat-button class="primary" type="button" (click)="clearFiltres()"><mat-icon>close</mat-icon> Annuler la recherche</button>
+
+  <div class="filtres-container">
+    <div class="recherche">
+      <input type="text" placeholder="Rechercher un jeu..." [(ngModel)]="texteRecherche" (input)="filtrerJeux(texteRecherche)">
+    </div>
+    <div class="filtres d-flex align-items-md-start">
+      <!--  Ne pas oublier : NgModel bind une variable du composant TS vers la vue et de la vue vers le template aussi, une sorte de synchronisation-->
+      <mat-select [(ngModel)]="filtrePlateforme" (selectionChange)="appliquerFiltres()">
+        <mat-option value="">Toutes les plateformes</mat-option>
+        <mat-option *ngFor="let plateforme of plateformes" [value]="plateforme">
+          {{plateforme}}
+        </mat-option>
+      </mat-select>
+
+      <mat-select [(ngModel)]="filtreGenre" (selectionChange)="appliquerFiltres()">
+        <mat-option value="">Tous les genres</mat-option>
+        <mat-option *ngFor="let genre of genres" [value]="genre">
+          {{genre}}
+        </mat-option>
+      </mat-select>
+
+      <mat-select [(ngModel)]="filtreDeveloppeur" (selectionChange)="appliquerFiltres()">
+        <mat-option value="">Tous les développeurs</mat-option>
+        <mat-option *ngFor="let developpeur of developpeurs" [value]="developpeur">
+          {{developpeur}}
+        </mat-option>
+      </mat-select>
+
+      <button mat-button (click)="enleverFiltres()">Effacer les filtres</button>
+    </div>
   </div>
 
-  <div class="list-game row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-    <ng-container *ngFor="let game of listeGameFiltree">
-      <div class="col" *ngIf="game.stock > 0">
-        <app-game [game]="game"></app-game>
-      </div>
-    </ng-container>
+
+  <div class="resultats">
+    <div *ngIf="listeGameFiltree.length === 0" class="mt-2 mb-2">
+      Aucun jeu ne correspond à vos critères de recherche.
+    </div>
+
+    <div class="list-game row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      <ng-container *ngFor="let game of listeGameFiltree">
+        <div class="col" *ngIf="game.stock > 0">
+          <app-game [game]="game"></app-game>
+        </div>
+      </ng-container>
+    </div>
   </div>
 </div>
