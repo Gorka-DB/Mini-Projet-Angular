@@ -1,19 +1,72 @@
 <div class="container mt-4">
+
   <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2>Liste des réservations</h2>
+    <h2 class="mb-4">Liste des réservations</h2>
     <button mat-raised-button color="primary" routerLink="/new-reservation">
       <mat-icon>add</mat-icon>
       Nouvelle réservation
     </button>
   </div>
 
-  <div *ngIf="listreservation.length === 0" class="alert alert-info text-center">
-    Aucune réservation trouvée.
+<div class="row">
+  <div class="col-md-3">
+    <div class="filtres-container">
+      <div class="filtres d-flex flex-column">
+        <mat-form-field>
+          <mat-label>Rechercher un Client...</mat-label>
+          <input matInput type="text" placeholder="Nom du Client..." [(ngModel)]="texteRechercheNom" (input)="filtrerReservations(texteRechercheNom)">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Choisir une plateforme</mat-label>
+          <mat-select [(ngModel)]="filtrePlateforme" (selectionChange)="appliquerFiltres()">
+            <mat-option value="">Toutes les plateformes</mat-option>
+            <mat-option *ngFor="let plateforme of plateformes" [value]="plateforme">
+              {{plateforme}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Choisir un Jeu</mat-label>
+          <mat-select [(ngModel)]="filtreJeu" (selectionChange)="appliquerFiltres()">
+            <mat-option value="">Tous les jeux</mat-option>
+            <mat-option *ngFor="let jeu of jeux" [value]="jeu">
+              {{jeu}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Choisir un statut</mat-label>
+          <mat-select [(ngModel)]="filtreStatut" (selectionChange)="appliquerFiltres()">
+            <mat-option value="">Tous les statuts</mat-option>
+            <mat-option *ngFor="let statut of statuts" [value]="statut">
+              {{statut}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button mat-button (click)="enleverFiltres()">Effacer les filtres</button>
+      </div>
+    </div>
   </div>
 
-  <div class="list-game row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-4">
-    <ng-container *ngFor="let res of listreservation">
-        <app-reservation [reservation]="res"></app-reservation>
-    </ng-container>
+
+  <div class="col-md-9">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      <div *ngIf="listeReservationFiltree.length === 0" class="mt-2 mb-2">
+        Aucune réservation ne correspond à vos critères de recherche.
+      </div>
+<!--      <div *ngIf="listreservation">-->
+      <ng-container *ngFor="let res of listeReservationFiltree">
+        <div class="col">
+          <app-reservation [reservation]="res"></app-reservation>
+        </div>
+      </ng-container>
+<!--      </div>-->
+    </div>
   </div>
 </div>
+</div>
+

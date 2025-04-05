@@ -18,8 +18,8 @@ export class ReservationsService {
     return this.http.get<RESERVATION>("http://localhost:3000/RESERVATION/" + id);
   }
 
-  getReservationsByGame(gameTitle: string): Observable<RESERVATION[]> {
-    return this.http.get<RESERVATION[]>(`http://localhost:3000/RESERVATION?titreJeu=${gameTitle}`);
+  getReservationsByGame(jeuReserve: string): Observable<RESERVATION[]> {
+    return this.http.get<RESERVATION[]>(`http://localhost:3000/RESERVATION?jeuReserve=${jeuReserve}`);
   }
 
   addReservation(nouvReservation: RESERVATION): Observable<RESERVATION> {

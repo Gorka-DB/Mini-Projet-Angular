@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { GamesService } from '../services/games.service';
 import { GAME } from '../models/game.models';
 
@@ -30,16 +30,22 @@ export class ListGameComponent implements OnInit {
       this.listgame = games;
       this.recupOptionsFiltrage();
       this.enleverFiltres();
-      // console.log(this.listeGameFiltree);
     });
 
   }
 
   // récup les filtres possibles pour remplir les 3 listes
   private recupOptionsFiltrage(): void {
-    this.plateformes = [...new Set(this.listgame.map(game => game.plateforme))];
-    this.genres = [...new Set(this.listgame.map(game => game.genre))];
-    this.developpeurs = [...new Set(this.listgame.map(game => game.developpeur))];
+
+    // récupération des valeurs -> qu'on met dans des Set pour supprimer les doublons
+    const plateformesRecup = new Set(this.listgame.map(game => game.plateforme))
+    const genresRecup = new Set(this.listgame.map(game => game.genre))
+    const developpeursRecup = new Set(this.listgame.map(game => game.developpeur))
+
+    // On les remet dans l'array qu'on utilise dans le template
+    this.plateformes = [...plateformesRecup];
+    this.genres = [...genresRecup];
+    this.developpeurs = [...developpeursRecup];
   }
 
   // Appliquer les filtres
@@ -63,8 +69,8 @@ export class ListGameComponent implements OnInit {
     this.appliquerFiltres();
   }
 
-  filtrerParPlateforme(platform: string) {
-    this.filtrePlateforme = platform;
+  filtrerParPlateforme(plateforme: string) {
+    this.filtrePlateforme = plateforme;
     this.appliquerFiltres();
   }
 
@@ -73,8 +79,8 @@ export class ListGameComponent implements OnInit {
     this.appliquerFiltres();
   }
 
-  filtrerParDeveloppeur(developer: string) {
-    this.filtreDeveloppeur = developer;
+  filtrerParDeveloppeur(developpeur: string) {
+    this.filtreDeveloppeur = developpeur;
     this.appliquerFiltres();
   }
 

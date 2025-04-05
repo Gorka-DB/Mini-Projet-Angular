@@ -6,17 +6,12 @@
   object-fit: contain;
 }
 
-.reservation-card {
-  margin-bottom: 20px;
-}
-
 .reservation-detail {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-
   mat-icon {
     margin-right: 10px;
     color: #1d278f;
+  }
+  span {
+    margin-left: 10px;
   }
 }

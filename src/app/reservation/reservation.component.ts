@@ -27,6 +27,8 @@ export class ReservationComponent implements OnInit {
     } else {
       this.theReservation = this.reservation;
     }
+    console.log('Reservation:', this.theReservation); // Log to verify data
+
   }
 
 }

@@ -5,7 +5,7 @@
 
   <mat-card-content>
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-10">
         <p class="reservation-detail">
           <mat-icon>event</mat-icon>
           <span>Réservé le {{theReservation.date | date: 'dd/MM/yyyy'}}</span>
@@ -22,20 +22,22 @@
           <mat-icon>inventory_2</mat-icon>
           <span>Statut de la réservation :
             {{theReservation.statut}}
+<!--            {{theReservation.plateforme}}-->
           </span>
         </p>
       </div>
       <div class="col-md-4 platform-icon-container">
-        <img *ngIf="theReservation.plateforme === 'pc'" src="https://i.redd.it/5be3ypqjts171.jpg" alt="PC" class="platform-icon">
+        <img *ngIf="theReservation.plateforme === 'PC'" src="https://i.redd.it/5be3ypqjts171.jpg" alt="PC" class="platform-icon">
         <img *ngIf="theReservation.plateforme === 'PlayStation'" src="https://download.logo.wine/logo/PlayStation/PlayStation-Logo.wine.png" alt="PlayStation" class="platform-icon">
         <img *ngIf="theReservation.plateforme === 'Xbox'" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Xbox_one_logo.svg/1200px-Xbox_one_logo.svg.png" alt="Xbox" class="platform-icon">
         <img *ngIf="theReservation.plateforme === 'Switch'" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Nintendo_Switch_Logo.svg/500px-Nintendo_Switch_Logo.svg.png" alt="Switch" class="platform-icon">
+        <img *ngIf="theReservation.plateforme === 'Autre'" src="https://upload.wikimedia.org/wikipedia/commons/f/f8/Question_mark_alternate.svg" alt="Autre" class="platform-icon">
       </div>
     </div>
   </mat-card-content>
 
   <mat-card-actions align="end">
-<!--    @TODO: A implémenter-->
+<!--    @TODO: A implémenter peut-être plus tard mais pas nécessaire pour le mini projet-->
 <!--    <div *ngIf="idreservation === undefined" class="full-width-action ms-1">-->
 <!--      <button *ngIf="theReservation.statut === 'en attente' || theReservation.statut === 'confirmee'" (click)="annulerReservation()" mat-raised-button color="primary">-->
 <!--        <mat-icon>cancel</mat-icon>-->
@@ -43,7 +45,7 @@
 <!--      </button>-->
 <!--    </div>-->
     <div *ngIf="idreservation === undefined" class="full-width-action ms-1">
-      <button [routerLink]="['/games', theReservation.id]" mat-raised-button color="primary">
+      <button [routerLink]="['/reservations', theReservation.id]" mat-raised-button color="primary">
         <mat-icon>info</mat-icon>
         Voir le détail
       </button>
